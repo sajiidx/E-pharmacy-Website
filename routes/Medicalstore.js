@@ -16,8 +16,15 @@ router.get('/login', function(req, res , next){
     res.render('medicalstore_login.ejs')
 })
 router.get('/home',async function(req, res, next){
-    const request = await axios.get('http://localhost:3000/product');
-    console.log(request.data.data)
+    const request = await axios({
+        method: 'get',
+        url: 'http://localhost:3000/product/mid',
+        data:{
+            mid: req.session.user.username
+        }
+    });
+    //const request = await axios.get('http://localhost:3000/product/mid');
+    console.log(req.session.user.username)
     var products = request.data.data
     res.render('medicalstore_home.ejs',{products})
 })

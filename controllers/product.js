@@ -17,7 +17,8 @@ const index = (req, res) => {
     })
 }
 const getProducts = (req, res) => {
-    Product.find()
+    let ProductID = req.body.mid
+    Product.find({mid: ProductID})
     .then(response => {
         res.json({
             data: response
@@ -49,6 +50,7 @@ const store = (req, res) => {
     let product = new Product({
         pid: req.body.pid,
         pname: req.body.pname,
+        mid: req.session.user.username,
         price: req.body.price,
         quantity: req.body.quantity
     })

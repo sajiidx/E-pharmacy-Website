@@ -23,6 +23,7 @@ const register = (req, res, next) => {
     
         medicalStore.save()
         .then(user => {
+            
             return res.redirect('/medicalstore/login')
         })
         .catch(err =>{
@@ -51,6 +52,7 @@ const login = (req, res, next) => {
                 if(result)
                 {
                     let token = jwt.sign({name: user.name}, 'verySecretValue', {expiresIn: '1h'})
+                    req.session.user = user
                     return res.redirect('/medicalstore/home')                 
                 }
                 else
