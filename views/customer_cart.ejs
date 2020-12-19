@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Cart</title>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <% for (var i = 1; i < product.length; i++) { %>
+                    <li class="timeline-yellow">
+                        <div class="timeline-time">
+                            <span class="pname" style="text-align:left">
+                            Name: <%= product[i].pid %>
+                            </span>
+                            <br>
+                            <span class="price">
+                                Quantity: <%= product[i].quantity %> </span>
+                        </div>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+        <div>
+            <h5><a href="/order">Place Order</a></h5>
+        </div>
+    </body>
+</html>
