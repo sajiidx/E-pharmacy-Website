@@ -35,7 +35,7 @@ router.get('/home',async function(req, res, next){
     console.log(response.data.response)
     var orders = response.data.response
     var products = request.data.data
-    res.render('medicalstore_home.ejs',{products,orders})
+    res.render('medicalstore_home.ejs',{products,orders,User: req.session.user})
 })
 
 router.post('/registration', AuthMedicalstore.register)

@@ -37,6 +37,24 @@
                                 <span class="cname">
                                     Customer: <%= orders[i].username %>
                                 </span> <br>
+                                <div class="products">
+                                    <ul>
+                                        <% for (var j = 0 ; j < orders[i].product.length; j++) { %>
+                                            <% if(orders[i].product[j].mid == User.username) { %>
+                                                <li>
+                                                    <div>
+                                                        <span>
+                                                            ProductID: <%=orders[i].product[j].pid %>
+                                                        </span> <br>
+                                                        <span>
+                                                            Quantity: <%=orders[i].product[j].quantity %>
+                                                        </span> <br>
+                                                    </div>
+                                                </li>
+                                            <% } %>
+                                        <% } %>
+                                    </ul>
+                                </div>
                                 <span class="status">
                                     Status: <%= orders[i].status %>
                                 </span> <br>
