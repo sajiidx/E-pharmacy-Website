@@ -23,10 +23,19 @@ router.get('/home',async function(req, res, next){
             mid: req.session.user.username
         }
     });
+    const response = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/order/show',
+        data:{
+            mid: req.session.user.username
+        }
+    });
     //const request = await axios.get('http://localhost:3000/product/mid');
     console.log(req.session.user.username)
+    console.log(response.data.response)
+    var orders = response.data.response
     var products = request.data.data
-    res.render('medicalstore_home.ejs',{products})
+    res.render('medicalstore_home.ejs',{products,orders})
 })
 
 router.post('/registration', AuthMedicalstore.register)

@@ -10,6 +10,9 @@ var CartSchema = new mongoose.Schema({
             pid:{
                 type: String,
             },
+            mid:{
+                type: String,
+            },
             quantity:{
                 type: Number,
             }

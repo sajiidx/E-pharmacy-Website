@@ -17,8 +17,8 @@ const index = (req, res) => {
     })
 }
 const getOrders = (req, res) => {
-    let OrderID = req.body.mid
-    Order.find({mid: OrderID})
+    let OrderID = req.body.oid
+    Order.find({oid: OrderID})
     .then(response => {
         res.json({
             data: response
@@ -32,8 +32,8 @@ const getOrders = (req, res) => {
 }
 //show Order using ID
 const show = (req, res) => {
-    let OrderID = req.body.pid
-    Order.findById(OrderID)
+    let OrderID = req.body.mid
+    Order.find({product: {$elemMatch:{mid: OrderID}}})
     .then(response => {
         res.json({
             response
@@ -47,14 +47,16 @@ const show = (req, res) => {
 }
 //add new Order
 const store = (req, res) => {
-    let Order = new Order({
-        pid: req.body.pid,
-        pname: req.body.pname,
-        mid: req.session.user.username,
-        price: req.body.price,
-        quantity: req.body.quantity
+    console.log(JSON.parse(req.body.product))
+    let order = new Order({
+        oid: req.body.oid,
+        username: req.body.username,
+        product: JSON.parse(req.body.product),
+        address: req.body.address,
+        zipcode: parseInt(req.body.zipcode),
+        contact: req.body.contact
     })
-    Order.save()
+    order.save()
     .then(response => {
         res.json({
             message: 'Order Added Successfully'
@@ -68,13 +70,10 @@ const store = (req, res) => {
 }
 //update an Order
 const update = (req, res) => {
-    let OrderID = req.body.pid
+    let OrderID = req.body.oid
 
     let updatedData = {
-        pid: req.body.pid,
-        pname: req.body.pname,
-        price: req.body.price,
-        quantity: req.body.quantity
+        status: req.body.status
     }
 
     Order.findByIdAndUpdate(OrderID, {$set: updatedData})
@@ -91,8 +90,8 @@ const update = (req, res) => {
 }
 //delete an Order
 const destory = (req, res) => {
-    let OrderID = req.body.pid
-    Order.findByIdAndRemove(OrderID)
+    let OrderID = req.body.oid
+    Order.findAndRemove({oid: OrderID})
     .then(() => {
         res.json({
             message: 'Order Deleted Successfully'

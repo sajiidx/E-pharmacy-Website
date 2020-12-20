@@ -35,7 +35,7 @@ const show = (req, res) => {
 const store = (req, res) => {
     let cart = new Cart({
         oid: req.body.oid,
-        product: { pid: '', quantity: ''},
+        product: { pid: '', mid:'', quantity: ''},
     })
     cart.save()
     .then(response => {
@@ -54,12 +54,14 @@ const update = (req, res) => {
     let CartID = req.body.oid
     var id = req.body.pid
     var quan = req.body.quantity
+    var mid = req.body.mid
     console.log(CartID)
     console.log(id, quan)
     Cart.findOneAndUpdate({oid: CartID}, {
         $push: {
             product: {
                 pid: id,
+                mid: mid,
                 quantity: quan
             }
         }

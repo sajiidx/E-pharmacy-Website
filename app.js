@@ -8,6 +8,7 @@ const DeliveryBoyRouter = require('./routes/Deliveryboy')
 const MedicalStoreRouter = require('./routes/Medicalstore')
 const ProductRouter = require('./routes/Product')
 const CartRouter = require('./routes/Cart')
+const OrderRouter = require('./routes/Order')
 const express = require('express')
 const app = express()
 const flash = require('express-flash')
@@ -54,3 +55,4 @@ app.use('/deliveryboy',DeliveryBoyRouter);
 app.use('/medicalstore',MedicalStoreRouter);
 app.use('/cart',CartRouter)
 app.use('/product',ProductRouter);
+app.use('/order',OrderRouter)

@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 var OrderSchema = new mongoose.Schema({
     oid:{
-        type: Number,
+        type: String,
+        required: true,
+    },
+    username:{
+        type: String,
         required: true,
     },
     product:[
@@ -14,12 +18,25 @@ var OrderSchema = new mongoose.Schema({
             },
             mid:{
                 type: String,
-                required: true,
             }
         }
     ],
     status:{
+        type: String,
+        default: "initiated"
+    },
+    address:{
         type: String
+    },
+    zipcode:{
+        type: Number
+    },
+    contact:{
+        type: String
+    },
+    date:{
+        type: Date,
+        default: Date.now()
     }
 });
 var Order = mongoose.model('Order' , OrderSchema);
