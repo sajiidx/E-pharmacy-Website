@@ -9,6 +9,7 @@ const MedicalStoreRouter = require('./routes/Medicalstore')
 const ProductRouter = require('./routes/Product')
 const CartRouter = require('./routes/Cart')
 const OrderRouter = require('./routes/Order')
+const AdminRouter = require('./routes/admin')
 const express = require('express')
 const app = express()
 const flash = require('express-flash')
@@ -53,6 +54,7 @@ console.log('Now the server is running on url: https://127.0.0.1:3000')
 app.use('/customer',CustomerRouter);
 app.use('/deliveryboy',DeliveryBoyRouter);
 app.use('/medicalstore',MedicalStoreRouter);
-app.use('/cart',CartRouter)
+app.use('/cart',CartRouter);
 app.use('/product',ProductRouter);
-app.use('/order',OrderRouter)
+app.use('/order',OrderRouter);
+app.use('/admin',AdminRouter);
